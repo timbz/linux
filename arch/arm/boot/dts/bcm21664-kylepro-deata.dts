@@ -1,0 +1,71 @@
+// SPDX-License-Identifier: GPL-2.0
+/dts-v1/;
+
+#include <dt-bindings/gpio/gpio.h>
+
+#include "bcm21664.dtsi"
+
+/ {
+	model = "Samsung Galaxy Trend Plus";
+	compatible = "brcm,bcm21664";
+
+	chosen {
+		bootargs = "console=ttyS0,115200n8, PMOS_NO_OUTPUT_REDIRECT";
+		linux,initrd-start = <0x83000000>;
+		linux,initrd-end = <0x8312B3EE>;
+	};
+
+	memory {
+		device_type = "memory";
+		reg = <0x80000000 0x2e000000>; /* 736 MB */
+	};
+
+	uart@3e002000 {
+		status="okay";
+        };
+/*
+	i2c@3e01c000 {
+		status="okay";
+		clock-frequency = <100000>;
+
+		pmu: pmu@8 {
+			reg = <0x08>;
+		};
+	};
+*/
+
+	sdio1: sdio@3f180000 {
+		max-frequency = <48000000>;
+		status = "okay";
+	};
+
+	sdio2: sdio@3f190000 {
+		non-removable;
+		max-frequency = <48000000>;
+		status = "okay";
+	};
+
+	usbphy: usb-phy@3f130000 {
+		status = "okay";
+	};
+
+};
+/*
+#include "bcm59056.dtsi"
+
+&pmu {
+	compatible = "brcm,bcm59056";
+	interrupts = <GIC_SPI 29 IRQ_TYPE_LEVEL_HIGH>;
+	regulators {
+		sdldo_reg: sdldo {
+			regulator-min-microvolt = <1300000>;
+			regulator-max-microvolt = <3300000>;
+		};
+
+		sdxldo_reg: sdxldo {
+			regulator-min-microvolt = <1300000>;
+			regulator-max-microvolt = <3300000>;
+		};
+	};
+};
+*/
