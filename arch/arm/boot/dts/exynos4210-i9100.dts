@@ -569,6 +569,16 @@
 				regulator-always-on;
 			};
 		};
+
+		muic: max8997-muic {
+			compatible = "maxim,max8997-muic";
+		};
+
+		charger {
+			compatible = "maxim,max8997-battery";
+			charger-supply = <&charger_reg>;
+			extcon = <&muic>;
+		};
 	};
 };
 
