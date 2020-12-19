@@ -568,6 +568,12 @@
 				regulator-max-microvolt = <4200000>;
 				regulator-always-on;
 			};
+
+			chargertopoff_reg: CHARGER_TOPOFF {
+				regulator-name = "CHARGER_TOPOFF";
+				regulator-min-microamp = <200000>;
+				regulator-max-microamp = <200000>;
+			};
 		};
 
 		muic: max8997-muic {
